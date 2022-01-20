@@ -45,3 +45,22 @@ model = LinearRegression()
 model.fit(x_train, y_train)
 
 print("Traning Score:", model.score(x_train, y_train))
+
+# Training the randomforestRegressor model
+from sklearn.ensemble import RandomForestRegressor
+rf_model = RandomForestRegressor()
+rf_model.fit(x_train, y_train)
+
+print("Training Score:", rf_model.score(x_train, y_train))
+
+# Testing on Real Time Data
+temp = float(input("Enter the temp ="))
+pressur = float(input("Enter the pressure  ="))
+hum = float(input("Enter the Humidity="))
+direction = float(input("Enter the direction ="))
+speed = float(input("Enter the speed ="))
+
+test_sample = [[temp, pressur, hum, direction, speed]]
+test_sample = scaler.transform(test_sample)
+result = rf_model.predict(test_sample)
+print("Predicted Radiation= ", result)
